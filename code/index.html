@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ESP32 Web Control</title>
+    <script>
+      function sendPost(param, value) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/post", true);
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.send(param + "=" + value);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>ESP32 Web Control</h1>
+    <button onclick="sendPost('button', '1')">Click Me</button><br /><br />
+    <input
+      type="range"
+      min="0"
+      max="100"
+      oninput="sendPost('slider', this.value)"
+    />
+  </body>
+</html>
