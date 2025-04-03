@@ -16,40 +16,40 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 const char* SSID = "Hand client";
 const char* Password = "12345678";
 
-uint8_t receiverMAC[] = { 0x88, 0x613, 0xbf, 0x69, 0x34, 0x04 };
+uint8_t receiverMAC[] = { 0xD0, 0xEF, 0x76, 0xEC, 0x0F, 0x80 };
 
 ESP8266WebServer server(80);
 
 const char index_html[] PROGMEM = R"rawliteral(
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>ESP32 Web Control</title>
-    <script>
-      function sendPost(param, value) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/post", true);
-        xhr.setRequestHeader(
-          "Content-Type",
-          "application/x-www-form-urlencoded"
-        );
-        xhr.send(param + "=" + value);
-      }
-    </script>
-  </head>
-  <body>
-    <h1>ESP32 Web Control</h1>
-      <button  style="width:100%; height:100px;" onclick="sendPost('button', '1')">Click Me</button><br><br>
-      <input style="width:100%; height:100px;" type="range" min="0" max="100" oninput="sendPost('slider1', this.value)">
-      <input style="width:100%; height:100px;" type="range" min="0" max="100" oninput="sendPost('slider2', this.value)">
-      <input style="width:100%; height:100px;" type="range" min="0" max="100" oninput="sendPost('slider3', this.value)">
-      <input style="width:100%; height:100px;" type="range" min="0" max="100" oninput="sendPost('slider4', this.value)">
-      <input style="width:100%; height:100px;" type="range" min="0" max="100" oninput="sendPost('slider5', this.value)">
-  </body>
-  </html>
+  <title>ESP32 Web Control</title>
+  <script>
+    function sendPost(param, value) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/post", true);
+      xhr.setRequestHeader(
+        "Content-Type",
+        "application/x-www-form-urlencoded"
+      );
+      xhr.send(param + "=" + value);
+    }
+  </script>
+</head>
+<body>
+  <h1 style="text-align: center;">ESP32 Web Control</h1>
+    <button  style="width:90%; height:70px; margin-left: 5%;" onclick="sendPost('button', '1')">Click Me</button><br><br>
+    <input style="width:90%; height: 70px; margin-left: 5%;" type="range" min="0" max="100" oninput="sendPost('slider1', this.value)">
+    <input style="width:90%; height:70px; margin-left: 5%;" type="range" min="0" max="100" oninput="sendPost('slider2', this.value)">
+    <input style="width:90%; height:70px; margin-left: 5%;" type="range" min="0" max="100" oninput="sendPost('slider3', this.value)">
+    <input style="width:90%; height:70px; margin-left: 5%;" type="range" min="0" max="100" oninput="sendPost('slider4', this.value)">
+    <input style="width:90%; height:70px; margin-left: 5%;" type="range" min="0" max="100" oninput="sendPost('slider5', this.value)">
+</body>
+</html>
   )rawliteral";
 
 
